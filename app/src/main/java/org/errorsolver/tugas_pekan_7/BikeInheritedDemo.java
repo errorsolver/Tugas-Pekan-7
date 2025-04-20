@@ -22,9 +22,9 @@ public class BikeInheritedDemo {
     public void ShowBikes() {
         generalBike(this.mBike, this.mBike);
         spacer();
-        generalBike("Racing", this.rBike);
+        generalBike(this.rBike, this.rBike);
         spacer();
-        generalBike("Tandem", this.tBike);
+        generalBike(this.tBike, this.tBike);
     }
 
     private void spacer() {
