@@ -2,33 +2,56 @@ package org.errorsolver.tugas_pekan_7;
 
 public class BikeInheritedDemo {
 
-    private final int gear;
-    private final int speed;
-    private final int seat;
-    private final int tireSize;
+    private final static int SPEED = 10;
+    private final static int GEAR = 5;
+    private final static int SETHEIGHT = 8;
+    private final static int TIRESIZE = 26;
+    private final static int SEAT = 2;
 
-    private RacingBike racingBike = null;
-    private TandemBike tandemBike = null;
+    BikeInheritedDemo() {}
 
-    public BikeInheritedDemo(int gear, int speed, int seat, int tireSize) {
-        this.gear = gear;
-        this.speed = speed;
-        this.seat = seat;
-        this.tireSize = tireSize;
+    private final MountainBike mBike = new MountainBike();
+    private final RacingBike rBike = new RacingBike();
+    private final TandemBike tBike = new TandemBike();
 
-        this.racingBike = new RacingBike();
-        this.tandemBike = new TandemBike();
+    public static void main(String[] args) {
+        BikeInheritedDemo bikeInheritedDemo = new BikeInheritedDemo();
+        bikeInheritedDemo.ShowBikes();
     }
 
     public void ShowBikes() {
-        System.out.println("Racing Bike");
-        this.racingBike.changeGear(this.gear);
-        this.racingBike.speedUp(this.speed);
-        this.racingBike.changeTireSize(this.tireSize);
+        generalBike(this.mBike, this.mBike);
+        spacer();
+        generalBike("Racing", this.rBike);
+        spacer();
+        generalBike("Tandem", this.tBike);
+    }
 
-        System.out.println("Tandem Bike");
-        this.tandemBike.changeGear(this.gear);
-        this.tandemBike.speedUp(this.speed);
-        this.tandemBike.totalSeat(this.seat);
+    private void spacer() {
+        System.out.println("---");
+    }
+
+    private <T> void generalBike(T bikeClass, MountainBike bike) {
+        String name = bikeClass.getClass().getSimpleName();
+        System.out.println(name);
+        bike.speedUp(BikeInheritedDemo.SPEED);
+        bike.changeGear(BikeInheritedDemo.GEAR);
+        bike.setHeight(BikeInheritedDemo.SETHEIGHT);
+    }
+
+    private <T> void generalBike(T bikeClass, RacingBike bike) {
+        String name = bikeClass.getClass().getSimpleName();
+        System.out.println(name);
+        bike.speedUp(BikeInheritedDemo.SPEED);
+        bike.changeGear(BikeInheritedDemo.GEAR);
+        bike.changeTireSize(BikeInheritedDemo.TIRESIZE);
+    }
+
+    private <T> void generalBike(T bikeClass, TandemBike bike) {
+        String name = bikeClass.getClass().getSimpleName();
+        System.out.println(name);
+        bike.speedUp(BikeInheritedDemo.SPEED);
+        bike.changeGear(BikeInheritedDemo.GEAR);
+        bike.totalSeat(BikeInheritedDemo.SEAT);
     }
 }
